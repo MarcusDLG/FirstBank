@@ -63,13 +63,17 @@ namespace FirstBank
     {
       if (AccountName == "checking")
       {
-        // pulls current amount from csv
+        // reads current amount from csv
         var account1 = Accounts.First(accounts => accounts.AccountName == AccountName).AccountAmount;
-        // subtracts deposit amount to csv amount
+        // subtracts deposit amount from csv amount
         account1 -= AccountAmount;
+        // writes new amount back to csv 
         Accounts.First(account => account.AccountName == AccountName).AccountAmount = account1;
+        // reads into the CSV to pull amount for savings
         var account2 = Accounts.First(accounts => accounts.AccountName == "savings").AccountAmount;
+        // adds subtracted value from checking to savings
         account2 += AccountAmount;
+        // writes saving account value back to
         Accounts.First(account => account.AccountName == "savings").AccountAmount = account2;
       }
       else if (AccountName == "savings")
@@ -81,6 +85,7 @@ namespace FirstBank
         account2 += AccountAmount;
         Accounts.First(account => account.AccountName == "checking").AccountAmount = account2;
       }
+      // saves all account data on csv
       SaveData();
       Console.Clear();
     }
