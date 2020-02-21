@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
-using FirstBank;
 
 namespace FirstBank
 {
@@ -64,8 +63,9 @@ namespace FirstBank
     {
       if (AccountName == "checking")
       {
-
+        // pulls current amount from csv
         var account1 = Accounts.First(accounts => accounts.AccountName == AccountName).AccountAmount;
+        // subtracts deposit amount to csv amount
         account1 -= AccountAmount;
         Accounts.First(account => account.AccountName == AccountName).AccountAmount = account1;
         var account2 = Accounts.First(accounts => accounts.AccountName == "savings").AccountAmount;
@@ -85,11 +85,6 @@ namespace FirstBank
       Console.Clear();
     }
 
-
-
-    // Method for deposit
-    // Method for withdrawal
-    // method for transfer
   }
 }
 
