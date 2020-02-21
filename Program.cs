@@ -9,13 +9,13 @@ namespace FirstBank
 {
   class Program
   {
-    static void SaveAccounts(List<Account> accounts)
-    {
-      var writer = new StreamWriter("Accounts.csv");
-      var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
-      csvWriter.WriteRecords(accounts);
-      writer.Flush();
-    }
+    // static void SaveAccounts(List<Account> accounts)
+    // {
+    //   var writer = new StreamWriter("Accounts.csv");
+    //   var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
+    //   csvWriter.WriteRecords(accounts);
+    //   writer.Flush();
+    // }
 
     // static void DisplayAccounts(List<Account> accounts)
     // {
@@ -31,8 +31,6 @@ namespace FirstBank
     {
 
       // csv read and interpret
-      var tracker = new AccountTracker();
-      tracker.LoadData();
 
       // set variables equal to list(s)
       // Welcome the user
@@ -45,57 +43,88 @@ namespace FirstBank
       var isRunning = true;
       while (isRunning)
       {
+
+        var tracker = new AccountTracker();
+        tracker.LoadData();
         tracker.DisplayAccounts();
         // What would you like to do?
         Console.WriteLine("Which account would you like to manage?");
         Console.WriteLine("(CHECKING), (SAVINGS), or (QUIT)?");
         var userInput = Console.ReadLine().ToLower();
         // user validation
-        if (userInput != "checking" && userInput != "savings")
+        if (userInput != "checking" && userInput != "savings" && userInput != "quit")
         {
           Console.WriteLine("That's not a correct choice. Please choose again from (CHECKING) or (SAVINGS)");
           userInput = Console.ReadLine().ToLower();
         }
         // if == CHECKING
-        if (userInput == "checking")
+        else if (userInput == "checking")
         {
-          tracker.DisplayChecking();
+          tracker.DisplayAccount("checking");
           Console.WriteLine("Would you like to (DEPOSIT), (WITHDRAW), or (TRANSFER) ?");
           userInput = Console.ReadLine().ToLower();
-          if (userInput != "deposit" && userInput != "withdraw" && userInput != "savings")
+          if (userInput != "deposit" && userInput != "withdraw" && userInput != "transfer")
           {
             Console.WriteLine("That's not a correct choice. Please choose again from (DEPOSIT), (WITHDRAW), or (TRANSFER)");
             userInput = Console.ReadLine().ToLower();
           }
           if (userInput == "deposit")
           {
-            var account = "checking";
+            // var account = "checking";
             Console.WriteLine("How much are you depositing?");
             var deposit = int.Parse(Console.ReadLine().ToLower());
-            tracker.Deposit(account, deposit);
+            tracker.Deposit("checking", deposit);
           }
           else if (userInput == "withdraw")
           {
+            Console.WriteLine("How much are you withdrawing?");
+            var deposit = int.Parse(Console.ReadLine().ToLower());
+            tracker.Withdrawl("checking", deposit);
 
           }
           else if (userInput == "transfer")
           {
+            Console.WriteLine("How much are you transfering?");
+            var deposit = int.Parse(Console.ReadLine().ToLower());
+            tracker.Transfer("checking", deposit);
 
           }
-          // if (userInput == "return")
-          // {
-
-          // }
-
-
         }
-        if (userInput == "savings")
+        else if (userInput == "savings")
         {
+          tracker.DisplayAccount("savings");
+          Console.WriteLine("Would you like to (DEPOSIT), (WITHDRAW), or (TRANSFER) ?");
+          userInput = Console.ReadLine().ToLower();
+          if (userInput != "deposit" && userInput != "withdraw" && userInput != "transfer")
+          {
+            Console.WriteLine("That's not a correct choice. Please choose again from (DEPOSIT), (WITHDRAW), or (TRANSFER)");
+            userInput = Console.ReadLine().ToLower();
+          }
+          if (userInput == "deposit")
+          {
+            // var account = "checking";
+            Console.WriteLine("How much are you depositing?");
+            var deposit = int.Parse(Console.ReadLine().ToLower());
+            tracker.Deposit("savings", deposit);
 
+          }
+          if (userInput == "withdraw")
+          {
+            Console.WriteLine("How much are you withdrawing?");
+            var deposit = int.Parse(Console.ReadLine().ToLower());
+            tracker.Withdrawl("savings", deposit);
+          }
+          if (userInput == "transfer")
+          {
+            Console.WriteLine("How much are you transfering?");
+            var transfer = int.Parse(Console.ReadLine().ToLower());
+            tracker.Transfer("savings", transfer);
+          }
         }
-        if (userInput == "quit")
+        else if (userInput == "quit")
         {
-
+          isRunning = false;
+          Console.WriteLine("Goodbye User!");
         }
 
 
