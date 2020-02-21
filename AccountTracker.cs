@@ -40,7 +40,7 @@ namespace FirstBank
       Console.WriteLine($"Your {AccountName} account has ${checking} dollars.");
     }
 
-    public void Deposit(string AccountName, int AccountAmount)
+    public void Deposit(string AccountName, double AccountAmount)
     {
       var account = Accounts.First(accounts => accounts.AccountName == AccountName).AccountAmount;
       account += AccountAmount;
@@ -51,7 +51,7 @@ namespace FirstBank
     }
 
 
-    internal void Withdrawl(string AccountName, int AccountAmount)
+    internal void Withdrawl(string AccountName, double AccountAmount)
     {
       var account = Accounts.First(accounts => accounts.AccountName == AccountName).AccountAmount;
       account -= AccountAmount;
@@ -60,7 +60,7 @@ namespace FirstBank
       Console.Clear();
     }
 
-    internal void Transfer(string AccountName, int AccountAmount)
+    internal void Transfer(string AccountName, double AccountAmount)
     {
       if (AccountName == "checking")
       {
@@ -71,9 +71,6 @@ namespace FirstBank
         var account2 = Accounts.First(accounts => accounts.AccountName == "savings").AccountAmount;
         account2 += AccountAmount;
         Accounts.First(account => account.AccountName == "savings").AccountAmount = account2;
-        SaveData();
-        Console.Clear();
-
       }
       else if (AccountName == "savings")
       {
@@ -83,10 +80,9 @@ namespace FirstBank
         var account2 = Accounts.First(accounts => accounts.AccountName == "checking").AccountAmount;
         account2 += AccountAmount;
         Accounts.First(account => account.AccountName == "checking").AccountAmount = account2;
-        SaveData();
-        Console.Clear();
-
       }
+      SaveData();
+      Console.Clear();
     }
 
 

@@ -72,20 +72,20 @@ namespace FirstBank
           {
             // var account = "checking";
             Console.WriteLine("How much are you depositing?");
-            var deposit = int.Parse(Console.ReadLine().ToLower());
+            var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Deposit("checking", deposit);
           }
           else if (userInput == "withdraw")
           {
             Console.WriteLine("How much are you withdrawing?");
-            var deposit = int.Parse(Console.ReadLine().ToLower());
+            var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Withdrawl("checking", deposit);
 
           }
           else if (userInput == "transfer")
           {
             Console.WriteLine("How much are you transfering?");
-            var deposit = int.Parse(Console.ReadLine().ToLower());
+            var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Transfer("checking", deposit);
 
           }
@@ -104,20 +104,20 @@ namespace FirstBank
           {
             // var account = "checking";
             Console.WriteLine("How much are you depositing?");
-            var deposit = int.Parse(Console.ReadLine().ToLower());
+            var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Deposit("savings", deposit);
 
           }
           if (userInput == "withdraw")
           {
             Console.WriteLine("How much are you withdrawing?");
-            var deposit = int.Parse(Console.ReadLine().ToLower());
+            var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Withdrawl("savings", deposit);
           }
           if (userInput == "transfer")
           {
             Console.WriteLine("How much are you transfering?");
-            var transfer = int.Parse(Console.ReadLine().ToLower());
+            var transfer = double.Parse(Console.ReadLine().ToLower());
             tracker.Transfer("savings", transfer);
           }
         }
