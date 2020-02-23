@@ -45,8 +45,10 @@ namespace FirstBank
       {
 
         var tracker = new AccountTracker();
+        var transactionTracker = new TransactionTracker();
         tracker.LoadData();
         tracker.DisplayAccounts();
+        // transactionTracker.DisplayLast();
         // What would you like to do?
         Console.WriteLine("Which account would you like to manage?");
         Console.WriteLine("(CHECKING), (SAVINGS), or (QUIT)?");
@@ -74,12 +76,16 @@ namespace FirstBank
             Console.WriteLine("How much are you depositing?");
             var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Deposit("checking", deposit);
+            transactionTracker.AddTransaction("deposit", "checking", deposit);
+
           }
           else if (userInput == "withdraw")
           {
             Console.WriteLine("How much are you withdrawing?");
             var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Withdrawl("checking", deposit);
+            // transactionTracker.AddTransaction("withdrawal", "checking", deposit, DateTime.Now);
+
 
           }
           else if (userInput == "transfer")

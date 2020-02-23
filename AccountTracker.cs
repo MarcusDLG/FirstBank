@@ -50,22 +50,25 @@ namespace FirstBank
     }
 
 
-    internal void Withdrawl(string AccountName, double AccountAmount)
+    public void Withdrawl(string AccountName, double AccountAmount)
     {
       var account = Accounts.First(accounts => accounts.AccountName == AccountName).AccountAmount;
       account -= AccountAmount;
       Accounts.First(account => account.AccountName == AccountName).AccountAmount = account;
       SaveData();
+      var transactionType = "withdrawal";
+      TransactionTracker.Transactions.Transcation.AddTransaction(transactionType, AccountName, AccountAmount);
+      // TransactionTracker.SaveData();
       Console.Clear();
     }
 
-    internal void Transfer(string AccountName, double AccountAmount)
+    public void Transfer(string AccountName, double AccountAmount)
     {
       if (AccountName == "checking")
       {
         // reads current amount from csv
         var account1 = Accounts.First(accounts => accounts.AccountName == AccountName).AccountAmount;
-        // subtracts deposit amount from csv amount
+        // subtracts deposit amount  csv amount
         account1 -= AccountAmount;
         // writes new amount back to csv 
         Accounts.First(account => account.AccountName == AccountName).AccountAmount = account1;
