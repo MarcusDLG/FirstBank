@@ -60,7 +60,11 @@ namespace FirstBank
 
     public void DisplayAll()
     {
-
+      var allTransactions = (Transactions.OrderByDescending(displayLast => displayLast.TransactionTime));
+      foreach (var transaction in allTransactions)
+      {
+        Console.WriteLine($"Your last transaction was a {transaction.TransactionType} for ${transaction.TransactionAmount} from (to if transfer) {transaction.TransactionAccount} ");
+      }
     }
   }
 }

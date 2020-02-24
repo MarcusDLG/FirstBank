@@ -54,12 +54,12 @@ namespace FirstBank
         // transactionTracker.DisplayLast();
         // What would you like to do?
         Console.WriteLine("Which account would you like to manage?");
-        Console.WriteLine("(CHECKING), (SAVINGS), or (QUIT)?");
+        Console.WriteLine("(CHECKING), (SAVINGS), (DISPLAY) All Transactions, or (QUIT)?");
         var userInput = Console.ReadLine().ToLower();
         // user validation
-        if (userInput != "checking" && userInput != "savings" && userInput != "quit")
+        if (userInput != "checking" && userInput != "savings" && userInput != "display" && userInput != "quit")
         {
-          Console.WriteLine("That's not a correct choice. Please choose again from (CHECKING) or (SAVINGS)");
+          Console.WriteLine("That's not a correct choice. Please choose again from (CHECKING), (SAVINGS) (DISPLAY), or (QUIT).");
           userInput = Console.ReadLine().ToLower();
         }
         // if == CHECKING
@@ -142,6 +142,10 @@ namespace FirstBank
             transactionTracker.AddTransaction(transactionType, "savings", transfer);
 
           }
+        }
+        else if (userInput == "display")
+        {
+          transactionTracker.DisplayAll();
         }
         else if (userInput == "quit")
         {
