@@ -9,6 +9,7 @@ namespace FirstBank
 {
   class Program
   {
+
     // static void SaveAccounts(List<Account> accounts)
     // {
     //   var writer = new StreamWriter("Accounts.csv");
@@ -48,6 +49,8 @@ namespace FirstBank
         var transactionTracker = new TransactionTracker();
         tracker.LoadData();
         tracker.DisplayAccounts();
+        transactionTracker.LoadData();
+        transactionTracker.DisplayLast();
         // transactionTracker.DisplayLast();
         // What would you like to do?
         Console.WriteLine("Which account would you like to manage?");
@@ -77,6 +80,8 @@ namespace FirstBank
             var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Deposit("checking", deposit);
             transactionTracker.AddTransaction("deposit", "checking", deposit);
+            var transactionType = "deposit";
+            transactionTracker.AddTransaction(transactionType, "checking", deposit);
 
           }
           else if (userInput == "withdraw")
@@ -84,6 +89,8 @@ namespace FirstBank
             Console.WriteLine("How much are you withdrawing?");
             var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Withdrawl("checking", deposit);
+            var transactionType = "withdrawal";
+            transactionTracker.AddTransaction(transactionType, "checking", deposit);
             // transactionTracker.AddTransaction("withdrawal", "checking", deposit, DateTime.Now);
 
 
@@ -91,8 +98,10 @@ namespace FirstBank
           else if (userInput == "transfer")
           {
             Console.WriteLine("How much are you transfering?");
-            var deposit = double.Parse(Console.ReadLine().ToLower());
-            tracker.Transfer("checking", deposit);
+            var transfer = double.Parse(Console.ReadLine().ToLower());
+            tracker.Transfer("checking", transfer);
+            var transactionType = "transfer";
+            transactionTracker.AddTransaction(transactionType, "savings", transfer);
 
           }
         }
@@ -112,6 +121,8 @@ namespace FirstBank
             Console.WriteLine("How much are you depositing?");
             var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Deposit("savings", deposit);
+            var transactionType = "deposit";
+            transactionTracker.AddTransaction(transactionType, "savings", deposit);
 
           }
           if (userInput == "withdraw")
@@ -119,12 +130,17 @@ namespace FirstBank
             Console.WriteLine("How much are you withdrawing?");
             var deposit = double.Parse(Console.ReadLine().ToLower());
             tracker.Withdrawl("savings", deposit);
+            var transactionType = "withdrawal";
+            transactionTracker.AddTransaction(transactionType, "savings", deposit);
           }
           if (userInput == "transfer")
           {
             Console.WriteLine("How much are you transfering?");
             var transfer = double.Parse(Console.ReadLine().ToLower());
             tracker.Transfer("savings", transfer);
+            var transactionType = "transfer";
+            transactionTracker.AddTransaction(transactionType, "savings", transfer);
+
           }
         }
         else if (userInput == "quit")

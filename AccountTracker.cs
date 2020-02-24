@@ -56,8 +56,6 @@ namespace FirstBank
       account -= AccountAmount;
       Accounts.First(account => account.AccountName == AccountName).AccountAmount = account;
       SaveData();
-      var transactionType = "withdrawal";
-      TransactionTracker.Transactions.Transcation.AddTransaction(transactionType, AccountName, AccountAmount);
       // TransactionTracker.SaveData();
       Console.Clear();
     }

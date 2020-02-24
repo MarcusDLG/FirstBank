@@ -1,0 +1,7 @@
+TransactionAccount,TransactionType,TransactionAmount,TransactionTime
+checking,deposit,1000,02/23/2020 19:13:35
+checking,withdrawal,4000,02/23/2020 19:13:35
+savings,deposit,100,02/23/2020 19:22:36
+savings,withdrawal,200,02/23/2020 19:25:58
+savings,transfer,200,02/23/2020 19:28:22
+checking,withdrawal,1000,02/23/2020 19:31:14
